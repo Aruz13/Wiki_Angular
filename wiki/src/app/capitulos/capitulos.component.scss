@@ -1,0 +1,61 @@
+.episode-card {
+    margin: 20px;
+    padding: 20px;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  th.mat-header-cell, td.mat-cell {
+    padding: 8px;
+    text-align: left;
+  }
+  
+  button {
+    margin: 0;
+  }
+  
+  @media (max-width: 768px) {
+    table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+  }
+
+  .pagination-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+    margin-bottom: 70px;
+  }
+  
+  .pagination-controls button {
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    margin: 0 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .pagination-controls button[disabled] {
+    background-color: #a9a9a9;
+    cursor: not-allowed;
+  }
+  
+  .pagination-controls button:not([disabled]):hover {
+    background-color: #1565c0;
+  }
+
+  .mat-mdc-button-disabled{
+    background-color: #a9a9a9;
+    cursor: not-allowed;
+  }
+
+  
+  mat-card-title {
+    color: white;
+  }

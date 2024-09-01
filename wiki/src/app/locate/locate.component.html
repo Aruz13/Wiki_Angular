@@ -1,1 +1,71 @@
-<p>locate works!</p>
+
+<div class="pagination-controls">
+    <button mat-icon-button (click)="prevPag()" [disabled]="currentPage === 1"><mat-icon>arrow_back</mat-icon></button>
+    <button mat-icon-button *ngFor="let page of getPages()" 
+            (click)="loadLocations(page)" 
+            [disabled]="page === currentPage">
+      {{ page }}
+    </button>
+    <button mat-icon-button (click)="postPag()" [disabled]="currentPage === totalPages"><mat-icon>arrow_forward</mat-icon></button>
+</div>
+
+
+<mat-card class="episode-card">
+  <mat-card-header>
+    <mat-card-title>Localizaciones</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content class="locations-table">
+    <table mat-table [dataSource]="locations" class="mat-elevation-z8">
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let location"> {{location.name}} </td>
+      </ng-container>
+  
+      <!-- Type Column -->
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef> Type </th>
+        <td mat-cell *matCellDef="let location"> {{location.type}} </td>
+      </ng-container>
+  
+      <!-- Dimension Column -->
+      <ng-container matColumnDef="dimension">
+        <th mat-header-cell *matHeaderCellDef> Dimension </th>
+        <td mat-cell *matCellDef="let location"> {{location.dimension}} </td>
+      </ng-container>
+  
+      <!-- Residents Column -->
+      <ng-container matColumnDef="residents">
+        <th mat-header-cell *matHeaderCellDef> Residents </th>
+        <td mat-cell *matCellDef="let location"> {{location.residents.length}} </td>
+      </ng-container>
+  
+      <!-- Save Button Column -->
+      <ng-container matColumnDef="save">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let location">
+          <button mat-button color="accent" >
+            Ver detalles 
+          </button>
+        </td>
+      </ng-container>
+  
+      <!-- Header and Row Declarations -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-card-content>
+</mat-card>
+
+<div class="pagination-controls">
+  <button mat-icon-button (click)="prevPag()" [disabled]="currentPage === 1"><mat-icon>arrow_back</mat-icon></button>
+  <button mat-icon-button *ngFor="let page of getPages()" 
+          (click)="loadLocations(page)" 
+          [disabled]="page === currentPage">
+    {{ page }}
+  </button>
+  <button mat-icon-button (click)="postPag()" [disabled]="currentPage === totalPages"><mat-icon>arrow_forward</mat-icon></button>
+</div>
+

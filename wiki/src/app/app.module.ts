@@ -7,6 +7,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatTableModule } from '@angular/material/table';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule } from '@angular/forms'; 
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,9 +40,14 @@ import { LocateComponent } from './locate/locate.component';
     MatToolbarModule,
     MatCardModule,
     MatButtonModule,
+    MatFormFieldModule,
     MatIconModule,
+    MatInputModule,
+    FormsModule,
     MatMenuModule,
+    MatSelectModule,
     MatGridListModule,
+    MatTableModule,
     HttpClientModule
   ],
   providers: [

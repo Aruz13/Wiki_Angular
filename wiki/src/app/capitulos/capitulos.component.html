@@ -1,1 +1,79 @@
-<p>capitulos works!</p>
+
+<div class="pagination-controls">
+    <button mat-icon-button (click)="prevPag()" [disabled]="currentPage === 1"><mat-icon>arrow_back</mat-icon></button>
+    <button mat-icon-button *ngFor="let page of getPages()" 
+            (click)="loadEpisodes(page)" 
+            [disabled]="page === currentPage">
+      {{ page }}
+    </button>
+    <button mat-icon-button (click)="postPag()" [disabled]="currentPage === totalPages"><mat-icon>arrow_forward</mat-icon></button>
+</div>
+
+
+
+<mat-card class="episode-card">
+    <mat-card-header>
+      <mat-card-title>Episodes</mat-card-title>
+    </mat-card-header>
+  
+    <mat-card-content>
+      <table mat-table [dataSource]="episodes" class="mat-elevation-z8">
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let episode">{{ episode.id }}</td>
+        </ng-container>
+  
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let episode">{{ episode.name }}</td>
+        </ng-container>
+  
+        <!-- Air Date Column -->
+        <ng-container matColumnDef="air_date">
+          <th mat-header-cell *matHeaderCellDef>Air Date</th>
+          <td mat-cell *matCellDef="let episode">{{ episode.air_date }}</td>
+        </ng-container>
+  
+        <!-- Episode Column -->
+        <ng-container matColumnDef="episode">
+          <th mat-header-cell *matHeaderCellDef>Episode</th>
+          <td mat-cell *matCellDef="let episode">{{ episode.episode }}</td>
+        </ng-container>
+  
+        <!-- Characters Column -->
+        <ng-container matColumnDef="characters">
+          <th mat-header-cell *matHeaderCellDef>Characters</th>
+          <td mat-cell *matCellDef="let episode">
+            <button mat-button (click)="viewCharacters(episode.characters)">View Characters</button>
+          </td>
+        </ng-container>
+  
+        <!-- Action Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let episode">
+            <button mat-raised-button color="primary" (click)="saveEpisodeId(episode.id)">
+              Ver detalles
+            </button>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+
+  
+<div class="pagination-controls">
+    <button mat-icon-button (click)="prevPag()" [disabled]="currentPage === 1"><mat-icon>arrow_back</mat-icon></button>
+    <button mat-icon-button *ngFor="let page of getPages()" 
+            (click)="loadEpisodes(page)" 
+            [disabled]="page === currentPage">
+      {{ page }}
+    </button>
+    <button mat-icon-button (click)="postPag()" [disabled]="currentPage === totalPages"><mat-icon>arrow_forward</mat-icon></button>
+</div>
+

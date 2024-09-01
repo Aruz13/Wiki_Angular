@@ -1,0 +1,126 @@
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+    margin-bottom: 70px;
+  }
+  
+  .pagination-controls button {
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    margin: 0 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .pagination-controls button[disabled] {
+    background-color: #a9a9a9;
+    cursor: not-allowed;
+  }
+  
+  .pagination-controls button:not([disabled]):hover {
+    background-color: #1565c0;
+  }
+
+  .mat-mdc-button-disabled{
+    background-color: #a9a9a9;
+    cursor: not-allowed;
+  }
+  
+  mat-grid-list {
+    width: 100%;
+    margin: 20px 0;
+  }
+  
+  mat-grid-tile {
+    mat-card {
+        align-items: center;
+      background-color: #777777; 
+      color: #f5f5f5; 
+      border-radius: 10px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      width: 90%;
+      height: 90%;
+  
+      img {
+        width: 50%;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
+        margin-top: 15px;
+  
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+  
+      div {
+        display: flex;
+        justify-content: center;
+      }
+      mat-card-content {
+        justify-content: center;
+        padding: 15px;
+  
+        h2 {
+          font-size: 1.5rem;
+          color: #089b82; /* Blue color for the name */
+          margin-bottom: 10px;
+        }
+  
+        p {
+          font-size: 1rem;
+          color: #e0e0e0; /* Slightly darker color for text */
+          margin: 5px 0;
+  
+          strong {
+            color: #089b82; /* Blue color for the labels */
+          }
+        }
+      }
+    }
+  }
+
+  .filter-options {
+    justify-content: space-around;
+    margin-bottom: 20px;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 8px;
+    color: white;
+
+    h3 {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+    }
+    div {
+      display: flex;
+      justify-content: space-around;
+      align-content: center;
+    }
+    mat-form-field{
+      margin: 1%;
+    }
+  }
+  
+  .filter-options mat-form-field {
+    width: 45%;
+    color: white;
+  }
+  
+  .filter-options mat-form-field .mat-form-field-label {
+    color: #fff;
+    padding: auto;
+  }
+  
+  .filter-options mat-select {
+    color: white;
+  }
+  
+  .filter-options mat-select .mat-select-arrow {
+    color: white;
+  }

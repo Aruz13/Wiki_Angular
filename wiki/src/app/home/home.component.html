@@ -12,7 +12,6 @@
 <div class="categories">
     <mat-card class="category-card" *ngFor="let category of categories" (mouseenter)="onMouseEnter(category)" (mouseleave)="onMouseLeave(category)">
       <mat-card-header>
-        <mat-icon>{{ category.icon }}</mat-icon>
         <mat-card-title>{{ category.title }}</mat-card-title>
         <mat-card-actions>
           <button mat-raised-button color="accent" [routerLink]="category.link">Ver Más</button>
