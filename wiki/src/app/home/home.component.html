@@ -1,0 +1,42 @@
+
+
+  <div class="hero-section">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>Bienvenido a la Wiki de Rick and Morty</h1>
+      <p>Explora personajes, capítulos y localizaciones de la serie.</p>
+    </div>
+  </div>
+
+
+<div class="categories">
+    <mat-card class="category-card" *ngFor="let category of categories" (mouseenter)="onMouseEnter(category)" (mouseleave)="onMouseLeave(category)">
+      <mat-card-header>
+        <mat-icon>{{ category.icon }}</mat-icon>
+        <mat-card-title>{{ category.title }}</mat-card-title>
+        <mat-card-actions>
+          <button mat-raised-button color="accent" [routerLink]="category.link">Ver Más</button>
+        </mat-card-actions>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ category.description }}</p>
+        <p *ngIf="category.count !== undefined">Total: {{ category.count }}</p>
+        <ul *ngIf="category.items && category.items.length">
+          <li *ngFor="let item of category.items">
+
+            <mat-card class="category-card2" (mouseenter)="onMouseEnter(category)" (mouseleave)="onMouseLeave(category)">
+              <mat-card-header>
+                <mat-card-title>{{ item.name }}</mat-card-title>
+              </mat-card-header>
+              <mat-card-content class="info">
+                <img src='{{ item.image }}' alt="" class="my-image">
+              </mat-card-content>
+              <mat-card-actions>
+                <button mat-raised-button color="accent" [routerLink]="category.link">Ver Más</button>
+              </mat-card-actions>
+            </mat-card>
+          </li>
+        </ul>
+      </mat-card-content>
+    </mat-card>
+  </div>

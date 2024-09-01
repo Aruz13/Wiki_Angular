@@ -1,0 +1,24 @@
+<mat-toolbar color="primary" class="toolbar">
+    <span class="logo">Wiki Rick and Morty</span>
+    <span class="spacer"></span>
+    <nav class="nav-links">
+      <a mat-button routerLink="/">Inicio</a>
+      <a mat-button routerLink="/personajes">Personajes</a>
+      <a mat-button routerLink="/capitulos">Capítulos</a>
+      <a mat-button routerLink="/localizaciones">Localizaciones</a>
+      
+      
+    </nav>
+    <nav class="nav-links2">
+        <button mat-button [matMenuTriggerFor]="menu">
+            Menú
+            <mat-icon>menu</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-button routerLink="/">Inicio</button>
+            <button mat-button routerLink="/personajes">Personajes</button>
+            <button mat-button routerLink="/capitulos">Capítulos</button>
+            <button mat-button routerLink="/localizaciones">Localizaciones</button>
+        </mat-menu>
+    </nav>
+</mat-toolbar>

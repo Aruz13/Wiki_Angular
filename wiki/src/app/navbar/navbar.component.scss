@@ -1,0 +1,31 @@
+.toolbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .nav-links {
+    display: flex;
+    align-items: center;
+  }
+  
+  .spacer {
+    flex: 1;
+  }
+  
+  .nav-links2 {
+    display: none;
+  }
+  
+  @media (max-width: 600px) {
+    .nav-links {
+      display: none;
+    }
+    .nav-links2 {
+      display: block;
+    }
+  }
