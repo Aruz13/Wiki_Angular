@@ -23,6 +23,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PersonajesComponent } from './personajes/personajes.component';
 import { CapitulosComponent } from './capitulos/capitulos.component';
 import { LocateComponent } from './locate/locate.component';
+import { PersonajeComponent } from './unitarios/personaje/personaje.component';
+import { LocalizacionComponent } from './unitarios/localizacion/localizacion.component';
+import { EpisodioComponent } from './unitarios/episodio/episodio.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { LocateComponent } from './locate/locate.component';
     NavbarComponent,
     PersonajesComponent,
     CapitulosComponent,
-    LocateComponent
+    LocateComponent,
+    PersonajeComponent,
+    LocalizacionComponent,
+    EpisodioComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RickAndMortyService } from '../services/rick-and-morty.service'; // Adjust the path based on your project structure
 import { ActivatedRoute } from '@angular/router';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-personajes',
@@ -19,11 +20,11 @@ export class PersonajesComponent implements OnInit {
     species: '',
     gender: ''
   };
-  selectedStatus: string = ''; // Agrega esta propiedad
-  selectedGender: string = ''; // Agrega esta propiedad
-  selectedName: string = ''; // Agrega esta propiedad
-  statusOptions: string[] = ['Alive', 'Dead', 'unknown', 'Default']; // Añade las opciones disponibles según la API
-  genderOptions: string[] = ['Male', 'Female', 'Genderless', 'unknown', 'Default']; // Añade las opciones disponibles según la API
+  selectedStatus: string = ''; 
+  selectedGender: string = ''; 
+  selectedName: string = ''; 
+  statusOptions: string[] = ['Alive', 'Dead', 'unknown', 'Default'];
+  genderOptions: string[] = ['Male', 'Female', 'Genderless', 'unknown', 'Default']; 
 
   
   constructor(private rmService: RickAndMortyService, private route: ActivatedRoute) {}
@@ -64,17 +65,38 @@ export class PersonajesComponent implements OnInit {
     });
   }
 
-  loadCharacters2() {
+  loadCharacters2(page: number = 1) {
     console.log("Cambios 2");
     const { name, status, species, gender } = this.filters;
     console.log(this.filters);
-    this.rmService.getCharacters2(name, status, species, gender, this.currentPage)
+    if (name == '' && (status == '' || status == "Default" ) && (gender == '' || gender == "Default"  )){
+      console.log("Vacio")
+      this.loadCharacters(page);
+      return
+    }
+    let params = new HttpParams()
+    if (name) {
+      params = params.set('name', name);
+    }
+    if (status) {
+      params = params.set('status', status);
+    }
+    if (species) {
+      params = params.set('species', species);
+    }
+    if (gender) {
+      params = params.set('gender', gender);
+    }
+      const url = "https://rickandmortyapi.com/api/character?page="+ page+ "&" + params
+      this.rmService.getPage(url)
       .subscribe(response => {
-        console.log(response)
+        console.log(response);
         this.characters = response.results;
         this.totalPages = response.info.pages;
+        this.currentPage = page;
+        this.next = response.info.next
+        this.prev = response.info.prev
       });
-      console.log("Cambios 3");
   }
 
   applyFilters() {
@@ -92,14 +114,33 @@ export class PersonajesComponent implements OnInit {
   }
 
   prevPag(): void {
+    console.log("Cambio de pagina")
     if (this.currentPage > 1) {
-      this.loadCharacters(this.currentPage - 1);
+      console.log(this.prev)
+      this.getData(this.prev, this.currentPage-1);
+      this.getPages()
     }
   }
 
   postPag(): void {
+    console.log("Cambio de pagina")
     if (this.currentPage < this.totalPages) {
-      this.loadCharacters(this.currentPage + 1);
+      console.log(this.next)
+      this.getData(this.next, this.currentPage+1);
+      this.getPages()
     }
+  }
+
+  getData(url: any, page: number = 1){
+    console.log(url)
+    this.rmService.getPage(url)
+      .subscribe(response => {
+        console.log(response);
+        this.characters = response.results;
+        this.totalPages = response.info.pages;
+        this.currentPage = page;
+        this.next = response.info.next
+        this.prev = response.info.prev
+      });
   }
 }

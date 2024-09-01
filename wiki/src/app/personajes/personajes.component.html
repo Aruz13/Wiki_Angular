@@ -2,7 +2,7 @@
 <div class="pagination-controls">
     <button mat-icon-button (click)="prevPag()" [disabled]="currentPage === 1"><mat-icon>arrow_back</mat-icon></button>
     <button mat-icon-button *ngFor="let page of getPages()" 
-            (click)="loadCharacters(page)" 
+            (click)="loadCharacters2(page)" 
             [disabled]="page === currentPage">
       {{ page }}
     </button>

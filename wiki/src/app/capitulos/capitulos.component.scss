@@ -59,3 +59,47 @@
   mat-card-title {
     color: white;
   }
+
+
+  
+
+  .filter-options {
+    justify-content: space-around;
+    margin-bottom: 20px;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 8px;
+    color: white;
+
+    h3 {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+    }
+    div {
+      display: flex;
+      justify-content: space-around;
+      align-content: center;
+    }
+    mat-form-field{
+      margin: 1%;
+    }
+  }
+
+  .filter-options mat-form-field {
+    width: 45%;
+    color: white;
+  }
+  
+  .filter-options mat-form-field .mat-form-field-label {
+    color: #fff;
+    padding: auto;
+  }
+  
+  .filter-options mat-select {
+    color: white;
+  }
+  
+  .filter-options mat-select .mat-select-arrow {
+    color: white;
+  }

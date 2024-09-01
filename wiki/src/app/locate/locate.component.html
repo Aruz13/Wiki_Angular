@@ -9,6 +9,27 @@
     <button mat-icon-button (click)="postPag()" [disabled]="currentPage === totalPages"><mat-icon>arrow_forward</mat-icon></button>
 </div>
 
+<div class="filter-options">
+  <h3>Filtros</h3>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput [(ngModel)]="filters.name" (ngModelChange)="applyFilters()">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Dimension</mat-label>
+      <input matInput [(ngModel)]="filters.dimension" (ngModelChange)="applyFilters()">
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Type</mat-label>
+      <mat-select [(value)]="selectedType" (selectionChange)="applyFilters()">
+        <mat-option *ngFor="let type of typeOptions" [value]="type">{{ type }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
 
 <mat-card class="episode-card">
   <mat-card-header>
