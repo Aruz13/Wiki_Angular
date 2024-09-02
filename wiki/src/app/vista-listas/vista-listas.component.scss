@@ -10,32 +10,10 @@
   align-content: center;
   justify-content: center;
 }
-
-.pagination-controls {
-    display: flex;
-    justify-content: center;
-    margin-top: 70px;
-    margin-bottom: 70px;
-  }
-  
-  .pagination-controls button {
-    background-color: #1976d2;
-    color: white;
-    border: none;
-    margin: 0 10px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .pagination-controls button[disabled] {
-    background-color: #a9a9a9;
-    cursor: not-allowed;
-  }
-  
-  .pagination-controls button:not([disabled]):hover {
-    background-color: #1565c0;
-  }
+.filtradores{
+  display: flex;
+  justify-items:flex-start;
+}
 
   .mat-mdc-button-disabled{
     background-color: #a9a9a9;
@@ -178,7 +156,7 @@
   }
   
   .pagination-controls button {
-    background-color: #1976d2;
+    background-color: #3dacb4;
     color: white;
     border: none;
     margin: 0 10px;
@@ -193,7 +171,7 @@
   }
   
   .pagination-controls button:not([disabled]):hover {
-    background-color: #1565c0;
+    background-color: #317d83;
   }
 
   .mat-mdc-button-disabled{

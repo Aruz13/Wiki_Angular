@@ -14,6 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -29,6 +30,7 @@ import { LocalizacionComponent } from './unitarios/localizacion/localizacion.com
 import { EpisodioComponent } from './unitarios/episodio/episodio.component';
 import { VistaListasComponent } from './vista-listas/vista-listas.component';
 import { VistaDetallesComponent } from './vista-detalles/vista-detalles.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { VistaDetallesComponent } from './vista-detalles/vista-detalles.componen
     LocalizacionComponent,
     EpisodioComponent,
     VistaListasComponent,
-    VistaDetallesComponent
+    VistaDetallesComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

@@ -18,14 +18,14 @@
                 <mat-icon>{{ filtrosAbiertos ? 'expand_less' : 'expand_more' }}</mat-icon>
               </h3>
 
-              <div class="options" [@expandCollapse]="filtrosAbiertos ? 'expanded' : 'collapsed'">
+              <div class="filtradores" class="options" [@expandCollapse]="filtrosAbiertos ? 'expanded' : 'collapsed'">
                 <div class="Seleccion">
                     <h5>Categorias:</h5>
                     <button mat-raised-button color="primary" (click)="showSection('personajes')">Personajes</button>
                     <button mat-raised-button color="primary" (click)="showSection('episodios')">Episodios</button>
                     <button mat-raised-button color="primary" (click)="showSection('locacion')">Localización</button>
                 </div>
-                <div>
+                <div class="filtradores">
                   <mat-form-field appearance="fill">
                   <mat-label>Name</mat-label>
                   <input matInput [(ngModel)]="filtersP.name" (ngModelChange)="applyFiltersP()">
