@@ -25,7 +25,7 @@ export class RickAndMortyService {
   }
 
   getPage(url: string): Observable<any> {
-    console.log(url)
+    //console.log(url)
     return this.http.get(url);
   }
 
