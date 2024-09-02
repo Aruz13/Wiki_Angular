@@ -2,11 +2,28 @@ import { Component, OnInit } from '@angular/core';
 import { RickAndMortyService } from '../services/rick-and-morty.service';
 import { HttpParams } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-vista-listas',
   templateUrl: './vista-listas.component.html',
-  styleUrl: './vista-listas.component.scss'
+  styleUrl: './vista-listas.component.scss',
+  animations: [
+    trigger('expandCollapse', [
+      state('collapsed', style({
+        height: '0px',
+        overflow: 'hidden',
+        opacity: 0
+      })),
+      state('expanded', style({
+        height: '*',
+        opacity: 1
+      })),
+      transition('collapsed <=> expanded', [
+        animate('300ms ease-in-out')
+      ])
+    ])
+  ]
 })
 export class VistaListasComponent {
 
@@ -68,6 +85,12 @@ export class VistaListasComponent {
   constructor(private rmService: RickAndMortyService, private route: ActivatedRoute) {}
 
   selectedSection: string = 'personajes'; 
+
+  filtrosAbiertos: boolean = true;
+
+  toggleFiltros() {
+    this.filtrosAbiertos = !this.filtrosAbiertos;
+  }
 
   showSection(section: string) {
     this.selectedSection = section;

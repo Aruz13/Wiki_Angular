@@ -1,8 +1,4 @@
-<div class="Seleccion">
-    <button mat-raised-button color="primary" (click)="showSection('personajes')">Personajes</button>
-    <button mat-raised-button color="primary" (click)="showSection('episodios')">Episodios</button>
-    <button mat-raised-button color="primary" (click)="showSection('locacion')">Localización</button>
-</div>
+
 
 <div class="personajes" *ngIf="selectedSection === 'personajes'">
 
@@ -17,27 +13,42 @@
             </div>
 
             <div class="filter-options">
-            <h3>Filtros</h3>
-            <div>
-                <mat-form-field appearance="fill">
-                <mat-label>Name</mat-label>
-                <input matInput [(ngModel)]="filtersP.name" (ngModelChange)="applyFiltersP()">
-                </mat-form-field>
+              <h3 (click)="toggleFiltros()" style="cursor: pointer;">
+                Filtros
+                <mat-icon>{{ filtrosAbiertos ? 'expand_less' : 'expand_more' }}</mat-icon>
+              </h3>
+
+              <div class="options" [@expandCollapse]="filtrosAbiertos ? 'expanded' : 'collapsed'">
+                <div class="Seleccion">
+                    <h5>Categorias:</h5>
+                    <button mat-raised-button color="primary" (click)="showSection('personajes')">Personajes</button>
+                    <button mat-raised-button color="primary" (click)="showSection('episodios')">Episodios</button>
+                    <button mat-raised-button color="primary" (click)="showSection('locacion')">Localización</button>
+                </div>
+                <div>
+                  <mat-form-field appearance="fill">
+                  <mat-label>Name</mat-label>
+                  <input matInput [(ngModel)]="filtersP.name" (ngModelChange)="applyFiltersP()">
+                  </mat-form-field>
+              
+                  <mat-form-field appearance="fill">
+                  <mat-label>Status</mat-label>
+                  <mat-select [(value)]="selectedStatus" (selectionChange)="applyFiltersP()">
+                      <mat-option *ngFor="let status of statusOptions" [value]="status">{{ status }}</mat-option>
+                  </mat-select>
+                  </mat-form-field>
+              
+                  <mat-form-field appearance="fill">
+                  <mat-label>Gender</mat-label>
+                  <mat-select [(value)]="selectedGender" (selectionChange)="applyFiltersP()">
+                      <mat-option *ngFor="let gender of genderOptions" [value]="gender">{{ gender }}</mat-option>
+                  </mat-select>
+                  </mat-form-field>
+              </div>
+
+              </div>
             
-                <mat-form-field appearance="fill">
-                <mat-label>Status</mat-label>
-                <mat-select [(value)]="selectedStatus" (selectionChange)="applyFiltersP()">
-                    <mat-option *ngFor="let status of statusOptions" [value]="status">{{ status }}</mat-option>
-                </mat-select>
-                </mat-form-field>
             
-                <mat-form-field appearance="fill">
-                <mat-label>Gender</mat-label>
-                <mat-select [(value)]="selectedGender" (selectionChange)="applyFiltersP()">
-                    <mat-option *ngFor="let gender of genderOptions" [value]="gender">{{ gender }}</mat-option>
-                </mat-select>
-                </mat-form-field>
-            </div>
             </div>
 
           <div class="character-grid">
@@ -82,7 +93,17 @@
             
             
             <div class="filter-options">
-            <h3>Filtros</h3>
+              <h3 (click)="toggleFiltros()" style="cursor: pointer;">
+                Filtros
+                <mat-icon>{{ filtrosAbiertos ? 'expand_less' : 'expand_more' }}</mat-icon>
+              </h3>
+              <div *ngIf="filtrosAbiertos" class="options">
+            <div class="Seleccion">
+              <h5>Categorias:</h5>
+              <button mat-raised-button color="primary" (click)="showSection('personajes')">Personajes</button>
+              <button mat-raised-button color="primary" (click)="showSection('episodios')">Episodios</button>
+              <button mat-raised-button color="primary" (click)="showSection('locacion')">Localización</button>
+          </div>
             <div>
                 <mat-form-field appearance="fill">
                 <mat-label>Name</mat-label>
@@ -102,6 +123,7 @@
                     <mat-option *ngFor="let cap of capOptions" [value]="cap">{{ cap }}</mat-option>
                 </mat-select>
                 </mat-form-field>
+            </div>
             </div>
             </div>
             
@@ -179,7 +201,17 @@
     </div>
     
     <div class="filter-options">
-      <h3>Filtros</h3>
+      <h3 (click)="toggleFiltros()" style="cursor: pointer;">
+        Filtros
+        <mat-icon>{{ filtrosAbiertos ? 'expand_less' : 'expand_more' }}</mat-icon>
+      </h3>
+      <div *ngIf="filtrosAbiertos" class="options">
+      <div class="Seleccion">
+        <h5>Categorias:</h5>
+        <button mat-raised-button color="primary" (click)="showSection('personajes')">Personajes</button>
+        <button mat-raised-button color="primary" (click)="showSection('episodios')">Episodios</button>
+        <button mat-raised-button color="primary" (click)="showSection('locacion')">Localización</button>
+    </div>
       <div>
         <mat-form-field appearance="fill">
           <mat-label>Name</mat-label>
@@ -198,6 +230,7 @@
           </mat-select>
         </mat-form-field>
       </div>
+    </div>
     </div>
     
     <mat-card class="episode-card">
