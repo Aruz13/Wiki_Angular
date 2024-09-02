@@ -1,0 +1,260 @@
+<div class="Seleccion">
+    <button mat-raised-button color="primary" (click)="showSection('personajes')">Personajes</button>
+    <button mat-raised-button color="primary" (click)="showSection('episodios')">Episodios</button>
+    <button mat-raised-button color="primary" (click)="showSection('locacion')">Localización</button>
+</div>
+
+<div class="personajes" *ngIf="selectedSection === 'personajes'">
+
+            <div class="pagination-controls">
+                <button mat-icon-button (click)="prevPag()" [disabled]="currentPage === 1"><mat-icon>arrow_back</mat-icon></button>
+                <button mat-icon-button *ngFor="let page of getPages()" 
+                        (click)="loadCharacters2(page)" 
+                        [disabled]="page === currentPage">
+                {{ page }}
+                </button>
+                <button mat-icon-button (click)="postPag()" [disabled]="currentPage === totalPages"><mat-icon>arrow_forward</mat-icon></button>
+            </div>
+
+            <div class="filter-options">
+            <h3>Filtros</h3>
+            <div>
+                <mat-form-field appearance="fill">
+                <mat-label>Name</mat-label>
+                <input matInput [(ngModel)]="filtersP.name" (ngModelChange)="applyFiltersP()">
+                </mat-form-field>
+            
+                <mat-form-field appearance="fill">
+                <mat-label>Status</mat-label>
+                <mat-select [(value)]="selectedStatus" (selectionChange)="applyFiltersP()">
+                    <mat-option *ngFor="let status of statusOptions" [value]="status">{{ status }}</mat-option>
+                </mat-select>
+                </mat-form-field>
+            
+                <mat-form-field appearance="fill">
+                <mat-label>Gender</mat-label>
+                <mat-select [(value)]="selectedGender" (selectionChange)="applyFiltersP()">
+                    <mat-option *ngFor="let gender of genderOptions" [value]="gender">{{ gender }}</mat-option>
+                </mat-select>
+                </mat-form-field>
+            </div>
+            </div>
+
+          <div class="character-grid">
+                      <mat-card *ngFor="let character of characters" class="character-card">
+                        <mat-card-header>
+                          <mat-card-title>{{ character.name }}</mat-card-title>
+                        </mat-card-header>
+                        <img mat-card-image [src]="character.image" alt="{{ character.name }}">
+                        <mat-card-actions>
+                          <button mat-raised-button [routerLink]="['/character', character.id]">Ver Detalles</button>
+                        </mat-card-actions>
+                      </mat-card>
+           </div>   
+
+
+            <div class="pagination-controls">
+                <button mat-icon-button (click)="prevPag()" [disabled]="currentPage === 1"><mat-icon>arrow_back</mat-icon></button>
+                <button mat-icon-button *ngFor="let page of getPages()" 
+                        (click)="loadCharacters(page)" 
+                        [disabled]="page === currentPage">
+                {{ page }}
+                </button>
+                <button mat-icon-button (click)="postPag()" [disabled]="currentPage === totalPages"><mat-icon>arrow_forward</mat-icon></button>
+            </div>
+
+</div>
+
+
+<div class="episodios" *ngIf="selectedSection === 'episodios'">
+
+
+
+            <div class="pagination-controls">
+                <button mat-icon-button (click)="prevPag()" [disabled]="currentPage === 1"><mat-icon>arrow_back</mat-icon></button>
+                <button mat-icon-button *ngFor="let page of getPages()" 
+                        (click)="loadEpisodes(page)" 
+                        [disabled]="page === currentPage">
+                {{ page }}
+                </button>
+                <button mat-icon-button (click)="postPag()" [disabled]="currentPage === totalPages"><mat-icon>arrow_forward</mat-icon></button>
+            </div>
+            
+            
+            <div class="filter-options">
+            <h3>Filtros</h3>
+            <div>
+                <mat-form-field appearance="fill">
+                <mat-label>Name</mat-label>
+                <input matInput [(ngModel)]="filtersC.name" (ngModelChange)="applyFiltersC()">
+                </mat-form-field>
+            
+                <mat-form-field appearance="fill">
+                <mat-label>Season</mat-label>
+                <mat-select [(value)]="selectedSeason" (selectionChange)="applyFiltersC()">
+                    <mat-option *ngFor="let sea of seaOptions" [value]="sea">{{ sea }}</mat-option>
+                </mat-select>
+                </mat-form-field>
+                
+                <mat-form-field appearance="fill">
+                <mat-label>Episode</mat-label>
+                <mat-select [(value)]="selectedCap" (selectionChange)="applyFiltersC()">
+                    <mat-option *ngFor="let cap of capOptions" [value]="cap">{{ cap }}</mat-option>
+                </mat-select>
+                </mat-form-field>
+            </div>
+            </div>
+            
+            
+            <mat-card class="episode-card">
+                <mat-card-header>
+                <mat-card-title>Episodes</mat-card-title>
+                </mat-card-header>
+            
+                <mat-card-content>
+                <table mat-table [dataSource]="episodes" class="mat-elevation-z8">
+                    <!-- ID Column -->
+                    <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef>ID</th>
+                    <td mat-cell *matCellDef="let episode">{{ episode.id }}</td>
+                    </ng-container>
+            
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef>Name</th>
+                    <td mat-cell *matCellDef="let episode">{{ episode.name }}</td>
+                    </ng-container>
+            
+                    <!-- Air Date Column -->
+                    <ng-container matColumnDef="air_date">
+                    <th mat-header-cell *matHeaderCellDef>Air Date</th>
+                    <td mat-cell *matCellDef="let episode">{{ episode.air_date }}</td>
+                    </ng-container>
+            
+                    <!-- Episode Column -->
+                    <ng-container matColumnDef="episode">
+                    <th mat-header-cell *matHeaderCellDef>Episode</th>
+                    <td mat-cell *matCellDef="let episode">{{ episode.episode }}</td>
+                    </ng-container>
+            
+                    <!-- Action Column -->
+                    <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef>Actions</th>
+                    <td mat-cell *matCellDef="let episode">
+                      <button mat-raised-button [routerLink]="['/episode', episode.id]">Ver Detalles</button>
+                    </td>
+                    </ng-container>
+            
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsC"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsC;"></tr>
+                </table>
+                </mat-card-content>
+            </mat-card>
+            
+            
+            <div class="pagination-controls">
+                <button mat-icon-button (click)="prevPag()" [disabled]="currentPage === 1"><mat-icon>arrow_back</mat-icon></button>
+                <button mat-icon-button *ngFor="let page of getPages()" 
+                        (click)="loadEpisodes(page)" 
+                        [disabled]="page === currentPage">
+                {{ page }}
+                </button>
+                <button mat-icon-button (click)="postPag()" [disabled]="currentPage === totalPages"><mat-icon>arrow_forward</mat-icon></button>
+            </div>
+    
+
+</div>
+
+
+<div class="locacion" *ngIf="selectedSection === 'locacion'">
+
+    <div class="pagination-controls">
+        <button mat-icon-button (click)="prevPag()" [disabled]="currentPage === 1"><mat-icon>arrow_back</mat-icon></button>
+        <button mat-icon-button *ngFor="let page of getPages()" 
+                (click)="loadLocations(page)" 
+                [disabled]="page === currentPage">
+          {{ page }}
+        </button>
+        <button mat-icon-button (click)="postPag()" [disabled]="currentPage === totalPages"><mat-icon>arrow_forward</mat-icon></button>
+    </div>
+    
+    <div class="filter-options">
+      <h3>Filtros</h3>
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Name</mat-label>
+          <input matInput [(ngModel)]="filtersL.name" (ngModelChange)="applyFiltersL()">
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill">
+          <mat-label>Dimension</mat-label>
+          <input matInput [(ngModel)]="filtersL.dimension" (ngModelChange)="applyFiltersL()">
+        </mat-form-field>
+      
+        <mat-form-field appearance="fill">
+          <mat-label>Type</mat-label>
+          <mat-select [(value)]="selectedType" (selectionChange)="applyFiltersL()">
+            <mat-option *ngFor="let type of typeOptions" [value]="type">{{ type }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    
+    <mat-card class="episode-card">
+      <mat-card-header>
+        <mat-card-title>Localizaciones</mat-card-title>
+      </mat-card-header>
+    
+      <mat-card-content class="locations-table">
+        <table mat-table [dataSource]="locations" class="mat-elevation-z8">
+      
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let location"> {{location.name}} </td>
+          </ng-container>
+      
+          <!-- Type Column -->
+          <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef> Type </th>
+            <td mat-cell *matCellDef="let location"> {{location.type}} </td>
+          </ng-container>
+      
+          <!-- Dimension Column -->
+          <ng-container matColumnDef="dimension">
+            <th mat-header-cell *matHeaderCellDef> Dimension </th>
+            <td mat-cell *matCellDef="let location"> {{location.dimension}} </td>
+          </ng-container>
+      
+          <!-- Residents Column -->
+          <ng-container matColumnDef="residents">
+            <th mat-header-cell *matHeaderCellDef> Residents </th>
+            <td mat-cell *matCellDef="let location"> {{location.residents.length}} </td>
+          </ng-container>
+      
+          <!-- Save Button Column -->
+          <ng-container matColumnDef="save">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let location">
+              <button mat-raised-button [routerLink]="['/location', location.id]">Ver Detalles</button>
+            </td>
+          </ng-container>
+      
+          <!-- Header and Row Declarations -->
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsL"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsL;"></tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+    
+    <div class="pagination-controls">
+      <button mat-icon-button (click)="prevPag()" [disabled]="currentPage === 1"><mat-icon>arrow_back</mat-icon></button>
+      <button mat-icon-button *ngFor="let page of getPages()" 
+              (click)="loadLocations(page)" 
+              [disabled]="page === currentPage">
+        {{ page }}
+      </button>
+      <button mat-icon-button (click)="postPag()" [disabled]="currentPage === totalPages"><mat-icon>arrow_forward</mat-icon></button>
+    </div>
+    
+</div>

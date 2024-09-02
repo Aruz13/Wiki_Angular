@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { PersonajesComponent } from './personajes/personajes.component';
-import { CapitulosComponent } from './capitulos/capitulos.component';
-import { LocateComponent } from './locate/locate.component';
-LocateComponent
+import { VistaListasComponent } from './vista-listas/vista-listas.component';
+import { VistaDetallesComponent } from './vista-detalles/vista-detalles.component';
+
+
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'personajes', component: PersonajesComponent },
-  { path: 'capitulos', component: CapitulosComponent },
-  { path: 'localizaciones', component: LocateComponent },
-  { path: '**', redirectTo: '' } // Redirige rutas desconocidas a Home
+  { path: '', component: VistaListasComponent },
+  { path: 'location/:id', component: VistaDetallesComponent },
+  { path: 'character/:id', component: VistaDetallesComponent },
+  { path: 'episode/:id', component: VistaDetallesComponent },
+  { path: '**', redirectTo: '' } 
 ];
 
 @NgModule({

@@ -12,6 +12,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms'; 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +27,8 @@ import { LocateComponent } from './locate/locate.component';
 import { PersonajeComponent } from './unitarios/personaje/personaje.component';
 import { LocalizacionComponent } from './unitarios/localizacion/localizacion.component';
 import { EpisodioComponent } from './unitarios/episodio/episodio.component';
+import { VistaListasComponent } from './vista-listas/vista-listas.component';
+import { VistaDetallesComponent } from './vista-detalles/vista-detalles.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,9 @@ import { EpisodioComponent } from './unitarios/episodio/episodio.component';
     LocateComponent,
     PersonajeComponent,
     LocalizacionComponent,
-    EpisodioComponent
+    EpisodioComponent,
+    VistaListasComponent,
+    VistaDetallesComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +54,7 @@ import { EpisodioComponent } from './unitarios/episodio/episodio.component';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    MatProgressSpinnerModule,
     FormsModule,
     MatMenuModule,
     MatSelectModule,

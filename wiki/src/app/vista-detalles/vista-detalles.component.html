@@ -1,0 +1,104 @@
+<mat-card class="detail-card" *ngIf="entity">
+    <mat-card-header>
+      <mat-card-title>{{ entity.name }}</mat-card-title>
+    </mat-card-header>
+  
+    <mat-card-content>
+      <!-- Section for Location -->
+      <div *ngIf="type === 'location'" class="detail-section">
+        <p><strong>Type:</strong> {{ entity.type }}</p>
+        <p><strong>Dimension:</strong> {{ entity.dimension }}</p>
+        <p><strong>Residents:</strong> {{ entity.residents?.length }}</p>
+        <div *ngIf="loading" class="loading-spinner">
+            <mat-spinner></mat-spinner>
+          </div>
+          <h5>Residentes</h5>
+          <div *ngIf="!loading" class="character-grid">
+            
+            <mat-card *ngFor="let character of personaje" class="character-card">
+              <mat-card-header>
+                <mat-card-title>{{ character.name }}</mat-card-title>
+              </mat-card-header>
+              <img mat-card-image [src]="character.image" alt="{{ character.name }}">
+              <mat-card-actions>
+                <button mat-raised-button [routerLink]="['/character', character.id]">Ver Detalles</button>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+      </div>
+  
+      <!-- Section for Character -->
+      <div *ngIf="type === 'character'" class="detail-section">
+        <div class="upinfo">
+            <div class="upinfo1">
+                <img mat-card-image [src]="entity.image" alt="{{ entity.name }}" class="character-image">
+            </div>
+            <div class="upinfo1">
+                <p><strong>Status:</strong> {{ entity.status }}</p>
+                <p><strong>Species:</strong> {{ entity.species }}</p>
+                <p><strong>Origin:</strong> {{ entity.origin.name }}</p>
+                <div *ngIf="origenId !== ''">
+                    <button mat-raised-button [routerLink]="['/location', origenId]">Ver Detalles</button>
+                </div>
+                <p><strong>Location:</strong> {{ entity.location.name }}</p>
+                <div *ngIf="actID !== ''">
+                    <button mat-raised-button [routerLink]="['/location', actID ]">Ver Detalles</button>
+                </div>
+            </div>
+            
+        </div>
+        <div *ngIf="loading" class="loading-spinner">
+            <mat-spinner></mat-spinner>
+          </div>
+          
+        <div *ngIf="!loading">
+        <h5>Episodios</h5>
+            <table mat-table [dataSource]="episodios" class="mat-elevation-z8">
+
+                <!-- Nombre del Episodio Column -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Nombre del Episodio </th>
+                    <td mat-cell *matCellDef="let episode"> {{ episode.name }} </td>
+                </ng-container>
+
+                <!-- Ver Detalles Column -->
+                <ng-container matColumnDef="details">
+                    <th mat-header-cell *matHeaderCellDef> Detalles </th>
+                    <td mat-cell *matCellDef="let episode">
+                        <button mat-raised-button [routerLink]="['/episode', episode.id]">Ver Detalles</button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+      </div>
+  
+      <!-- Section for Episode -->
+      <div *ngIf="type === 'episode'" class="detail-section">
+        <p><strong>Air Date:</strong> {{ entity.air_date }}</p>
+        <p><strong>Episode:</strong> {{ entity.episode }}</p>
+        <p><strong>Characters:</strong> {{ entity.characters?.length }}</p>
+
+        <div *ngIf="loading" class="loading-spinner">
+            <mat-spinner></mat-spinner>
+          </div>
+          <h5>Personajes</h5>
+          <div *ngIf="!loading" class="character-grid">
+            
+            <mat-card *ngFor="let character of personaje" class="character-card">
+              <mat-card-header>
+                <mat-card-title>{{ character.name }}</mat-card-title>
+              </mat-card-header>
+              <img mat-card-image [src]="character.image" alt="{{ character.name }}">
+              <mat-card-actions>
+                <button mat-raised-button [routerLink]="['/character', character.id]">Ver Detalles</button>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+
+
+      </div>
+    </mat-card-content>
+  </mat-card>
