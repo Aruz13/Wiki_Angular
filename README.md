@@ -2,9 +2,10 @@
 Examen de habilidad.
 
 
-## Se utilizo
+## Se utilizo:
 - Angular 18
 - Material 18
+- Api "Rick and Morty"
 
 ## Informacion general del programa:
 
