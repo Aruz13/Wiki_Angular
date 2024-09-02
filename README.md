@@ -22,3 +22,9 @@ En los personajes; se ven todos sus detalles y abajo una lista de los capitulos 
 
 Cosas simultaneas:
 - En ambas vistas hay un navbar y un footer muy simples solo de demostracion, el navnbar es una cuenta con 2 botones que redirigen al inicio.
+
+
+## Datos extras:
+
+- Solo se añadio un servicio que hace todas las peticiones a la api.
+- Las vistas unitarias de cada cosa estan en codigo, pero solo estan habilitadas las 2 vistas principales.
